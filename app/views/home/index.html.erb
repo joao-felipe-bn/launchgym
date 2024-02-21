@@ -1,1 +1,5 @@
 <h1>Launch GYM - App para gerenciamento de alunos em academias.</h1>
+
+<% if current_user %>
+Olá <%= current_user.email %>
+<% end %>
