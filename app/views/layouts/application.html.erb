@@ -27,9 +27,14 @@
       </div>
     <% end %>
 
+    </br>
+
     <div class="container-fluid">
+      <% if false %> 
+        <p> Usuário logado: <%=  user_signed_in? %>  </p> 
+      <% end %> 
       <%= yield %>
     </div>
-
+    <%= render 'layouts/footer' %>
   </body>
 </html>
