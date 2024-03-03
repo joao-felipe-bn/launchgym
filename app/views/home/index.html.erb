@@ -1,5 +1,10 @@
 <h1>Launch GYM - App para gerenciamento de alunos em academias.</h1>
 
-<% if current_user %>
-Olá <%= current_user.email %>
+<h2>Usuários:</h2>
+<% @users.each do |user| %>
+    <h3> Nome: </h3> <h6><%= user.name %> </h6>
+    <h3> E-mail:</h3> <h6> <%= user.email %></h6>
+    <br/> 
 <% end %>
+
+
