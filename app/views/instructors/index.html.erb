@@ -1,0 +1,33 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Instrutores</h1>
+
+<%= link_to "Novo", new_instructor_path, class: 'btn btn-success' %>
+
+<div id="instructors">
+  <table class="table"> 
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Email</th>
+        <th scope="col">Documento</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Excluir</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+     <% @instructors.each do |instructor| %>
+          <tr>
+            <td><%= instructor.name %></td>
+            <td><%= instructor.email %></td>
+            <td><%= instructor.document %></td>
+            <td><%= button_to 'Editar', edit_instructor_path(instructor), method: 'get', class: 'btn btn-primary'%></td>
+            <td><%= button_to 'Remover',  instructor_path(instructor), method: 'delete', data: { turbo_confirm: "Deseja mesmo deletar esse registro?" }, class: 'btn btn-danger'%></td>  
+          </tr>
+      <% end %>
+  
+    </tbody>
+  
+  </table>
+</div>
