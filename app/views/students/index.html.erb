@@ -1,0 +1,47 @@
+<p style="color: green">
+  <%= notice %>
+</p>
+
+<h1>Alunos</h1>
+
+<%= link_to "Novo" , new_student_path, class: 'btn btn-success' %>
+
+  <div id="students">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">E-mail</th>
+          <th scope="col">Documento</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Excluir</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @students.each do |student| %>
+          <tr>
+            <td>
+              <%= student.name %>
+            </td>
+            <td>
+              <%= student.email %>
+            </td>
+            <td>
+              <%= student.document %>
+            </td>
+            <td>
+              <%= button_to 'Editar' , edit_student_path(student), method: 'get' , class: 'btn btn-primary' %>
+            </td>
+            <td>
+              <%= button_to 'Remover' , student_path(student), method: 'delete' , data:
+                {turbo_confirm: "Deseja mesmo deletar esse registor?" }, class: 'btn btn-danger' %>
+            </td>
+          </tr>
+          <% end %>
+      </tbody>
+
+    </table>
+
+  </div>
