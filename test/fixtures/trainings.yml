@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  single: false
+  reps: 1
+  durantion_minutes: 1
+
+two:
+  name: MyString
+  single: false
+  reps: 1
+  durantion_minutes: 1

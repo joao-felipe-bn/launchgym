@@ -1,0 +1,33 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Treinos</h1>
+
+<%= link_to "Novo", new_training_path, class: 'btn btn-success' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Individual?</th>
+      <th scope="col">Repetições</th>
+      <th scope="col">Duração (minutos)</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Remover</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trainings.each do |training| %>
+    <tr>
+      <td><%= training.name %></td>
+      <td><%= training.single %></td>
+      <td><%= training.reps %></td>
+      <td><%= training.durantion_minutes %></td>
+      <td><%= button_to 'Editar', edit_training_path(training), method: 'get', class: 'btn btn-primary' %></td>
+      <td><%= button_to 'Remover', training_path(training), method: 'delete', data: {turbo_confirm: "Deseja mesmo deletar esse registro?"} , class: 'btn btn-danger ' %></td>
+    </tr>
+    <% end %>
+  </tbody>
+
+
+</table>
