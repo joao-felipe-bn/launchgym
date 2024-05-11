@@ -1,0 +1,27 @@
+<%= form_with(model: class_session_student) do |form| %>
+  <% if class_session_student.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(class_session_student.errors.count, "error") %> prohibited this class_session_student from being saved:</h2>
+
+      <ul>
+        <% class_session_student.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :students_id, style: "display: block" %>
+    <%= form.text_field :students_id %>
+  </div>
+
+  <div>
+    <%= form.label :class_sessions_id, style: "display: block" %>
+    <%= form.text_field :class_sessions_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

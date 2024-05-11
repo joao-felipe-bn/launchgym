@@ -10,9 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_02_035401) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_18_050356) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "class_session_students", force: :cascade do |t|
+    t.bigint "students_id", null: false
+    t.bigint "class_sessions_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["class_sessions_id"], name: "index_class_session_students_on_class_sessions_id"
+    t.index ["students_id"], name: "index_class_session_students_on_students_id"
+  end
+
+  create_table "class_sessions", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.boolean "active"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.bigint "instructor_id", null: false
+    t.bigint "training_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["instructor_id"], name: "index_class_sessions_on_instructor_id"
+    t.index ["training_id"], name: "index_class_sessions_on_training_id"
+  end
 
   create_table "instructors", force: :cascade do |t|
     t.string "name"
@@ -61,6 +84,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_02_035401) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "class_session_students", "class_sessions", column: "class_sessions_id"
+  add_foreign_key "class_session_students", "students", column: "students_id"
+  add_foreign_key "class_sessions", "instructors"
+  add_foreign_key "class_sessions", "trainings"
   add_foreign_key "instructors", "users"
   add_foreign_key "students", "users"
 end
