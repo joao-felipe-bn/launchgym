@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <% if user_signed_in? %>    
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"> <%= link_to "Turma", root_path, class: "nav-link"  %></li>
+                    <li class="nav-item"> <%= link_to "Turma", class_sessions_path, class: "nav-link"  %></li>
                     <li class="nav-item"> <%= link_to "Treino", trainings_path, class: "nav-link"  %></li>
                     <li class="nav-item"> <%= link_to "Aluno", students_path, class: "nav-link"  %></li>
                     <li class="nav-item"> <%= link_to "Instrutor", instructors_path, class: "nav-link"  %></li>

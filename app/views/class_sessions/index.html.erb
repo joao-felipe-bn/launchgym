@@ -1,0 +1,42 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Turma</h1>
+
+<%= link_to "Novo", new_class_session_path, class: 'btn btn-success' %>
+
+<div id="turmas">
+  
+  <table class="table">
+    <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Ativa?</th>
+          <th>Hora Inicio</th>
+          <th>Hora Fim</th>
+          <th>Instrutor</th>
+          <th>Treino</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Excluir</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+      <% @class_sessions.each do |turma| %>
+        <tr>
+          <td><%= turma.id %></td>
+          <td><%= turma.name %></td>
+          <td><%= turma.description %></td>
+          <td><%= turma.active %></td>
+          <td><%= turma.start_time %></td>
+          <td><%= turma.end_time %></td>
+          <td><%= turma.instructor.name %></td>
+          <td><%= turma.training.name %></td>
+          <td><%= button_to 'Editar', edit_class_session_path(turma), method: 'get', class: 'btn btn-primary' %></td>
+          <td><%= button_to 'Remover',  class_session_path(turma), method: 'delete', data: { turbo_confirm: "Deseja mesmo deletar esse registro?" }, class: 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

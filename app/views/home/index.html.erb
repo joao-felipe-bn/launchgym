@@ -1,10 +1,6 @@
 <h1>Launch GYM - App para gerenciamento de alunos em academias.</h1>
 
-<h2>Usuários:</h2>
-<% @users.each do |user| %>
-    <h3> Nome: </h3> <h6><%= user.name %> </h6>
-    <h3> E-mail:</h3> <h6> <%= user.email %></h6>
-    <br/> 
-<% end %>
-
-
+</br>
+<h2>Total alunos: <%= Student.count %></h2>
+<h2>Total instrutores: <%= Instructor.count %></h2>
+<h2>Total turmas: <%= ClassSession.count %></h2>

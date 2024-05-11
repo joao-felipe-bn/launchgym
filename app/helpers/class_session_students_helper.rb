@@ -1,0 +1,2 @@
+module ClassSessionStudentsHelper
+end

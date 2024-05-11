@@ -1,0 +1,12 @@
+<h1>Editing class session</h1>
+
+<%= link_to "Ver alunos da turma", class_session_students_path(class_sessions_id: @class_session.id), class: 'btn btn-primary' %>
+
+<%= render "form", class_session: @class_session %>
+
+<br>
+
+<div>
+  <%= link_to "Show this class session", @class_session %> |
+  <%= link_to "Back to class sessions", class_sessions_path %>
+</div>

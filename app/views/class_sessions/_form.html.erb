@@ -1,0 +1,57 @@
+<%= form_with(model: class_session) do |form| %>
+  <% if class_session.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(class_session.errors.count, "error") %> prohibited this class_session from being saved:</h2>
+
+      <ul>
+        <% class_session.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :id, style: "display: block" %>
+    <%= form.text_field :id %>
+  </div>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :active, style: "display: block" %>
+    <%= form.check_box :active %>
+  </div>
+
+  <div>
+    <%= form.label :start_time, style: "display: block" %>
+    <%= form.datetime_field :start_time %>
+  </div>
+
+  <div>
+    <%= form.label :end_time, style: "display: block" %>
+    <%= form.datetime_field :end_time %>
+  </div>
+
+  <div>
+    <%= form.label :instructor_id, style: "display: block" %>
+    <%= form.text_field :instructor_id %>
+  </div>
+
+  <div>
+    <%= form.label :training_id, style: "display: block" %>
+    <%= form.text_field :training_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
