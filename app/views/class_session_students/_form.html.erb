@@ -12,13 +12,15 @@
   <% end %>
 
   <div>
-    <%= form.label :students_id, style: "display: block" %>
-    <%= form.text_field :students_id %>
+    <%= form.label :students_id, "Estudante", style: "display: block" %>
+    <% students_array = Student.all.map { |student| [student.name, student.id] } %>
+    <%= form.select :students_id, options_for_select(students_array) %>
   </div>
 
   <div>
-    <%= form.label :class_sessions_id, style: "display: block" %>
-    <%= form.text_field :class_sessions_id %>
+    <%= form.label :class_sessions_id, "Turma", style: "display: block" %>
+    <% turma_array = ClassSession.all.map { |turma| [turma.name, turma.id] } %>
+    <%= form.select :class_sessions_id, options_for_select(turma_array) %>
   </div>
 
   <div>

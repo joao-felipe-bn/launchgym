@@ -12,11 +12,6 @@
   <% end %>
 
   <div>
-    <%= form.label :id, style: "display: block" %>
-    <%= form.text_field :id %>
-  </div>
-
-  <div>
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
   </div>
@@ -41,15 +36,31 @@
     <%= form.datetime_field :end_time %>
   </div>
 
+  <% if false %>
   <div>
     <%= form.label :instructor_id, style: "display: block" %>
     <%= form.text_field :instructor_id %>
   </div>
+  <% end %>
+
+  <div>
+    <%= form.label :instructor_id, style: "display: block" %>
+    <% instructor_array = Instructor.all.map { |instructor| [instructor.name, instructor.id] } %>
+    <%= form.select :instructor_id, options_for_select(instructor_array) %>
+  </div>
 
   <div>
     <%= form.label :training_id, style: "display: block" %>
-    <%= form.text_field :training_id %>
+    <% training_array = Training.all.map { |training| [training.name, training.id] } %>
+    <%= form.select :training_id, options_for_select(training_array) %>
   </div>
+
+  <% if false %>
+    <div>
+      <%= form.label :training_id, style: "display: block" %>
+      <%= form.text_field :training_id %>
+    </div>
+  <% end %>
 
   <div>
     <%= form.submit %>
