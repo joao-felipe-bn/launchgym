@@ -4,6 +4,7 @@ class ClassSessionsController < ApplicationController
   # GET /class_sessions or /class_sessions.json
   def index
     @class_sessions = ClassSession.all
+   # @instructors = Instructors.all
   end
 
   # GET /class_sessions/1 or /class_sessions/1.json
