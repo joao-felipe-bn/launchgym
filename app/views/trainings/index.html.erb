@@ -9,7 +9,6 @@
     <tr>
       <th scope="col">Nome</th>
       <th scope="col">Individual?</th>
-      <th scope="col">Repetições</th>
       <th scope="col">Duração (minutos)</th>
       <th scope="col">Editar</th>
       <th scope="col">Remover</th>
@@ -21,7 +20,6 @@
     <tr>
       <td><%= training.name %></td>
       <td><%= training.single %></td>
-      <td><%= training.reps %></td>
       <td><%= training.durantion_minutes %></td>
       <td><%= button_to 'Editar', edit_training_path(training), method: 'get', class: 'btn btn-primary' %></td>
       <td><%= button_to 'Remover', training_path(training), method: 'delete', data: {turbo_confirm: "Deseja mesmo deletar esse registro?"} , class: 'btn btn-danger ' %></td>

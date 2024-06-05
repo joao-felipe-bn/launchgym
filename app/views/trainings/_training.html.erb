@@ -1,21 +1,16 @@
 <div id="<%= dom_id training %>">
   <p>
-    <strong>Name:</strong>
+    <strong>Nome:</strong>
     <%= training.name %>
   </p>
 
   <p>
-    <strong>Single:</strong>
-    <%= training.single %>
+    <strong>Treino sozinho?:</strong>
+    <%= training.single ? "Sim" : "Não" %>
   </p>
 
   <p>
-    <strong>Reps:</strong>
-    <%= training.reps %>
-  </p>
-
-  <p>
-    <strong>Durantion minutes:</strong>
+    <strong>Duração (minutos):</strong>
     <%= training.durantion_minutes %>
   </p>
 

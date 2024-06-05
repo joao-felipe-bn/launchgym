@@ -3,8 +3,8 @@
 <%= render @training %>
 
 <div>
-  <%= link_to "Edit this training", edit_training_path(@training) %> |
-  <%= link_to "Back to trainings", trainings_path %>
+  <%= link_to "Editar", edit_training_path(@training) %> |
+  <%= link_to "Voltar", trainings_path %>
 
-  <%= button_to "Destroy this training", @training, method: :delete %>
+  <%= button_to "Deletar", @training, method: :delete, class: "btn btn-danger" %>
 </div>
