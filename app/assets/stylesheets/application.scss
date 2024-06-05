@@ -28,10 +28,25 @@ body {
 }
 
 footer {
-    background-color: #e3f2fd;
-    color: #837f7f;
+    background-color: #98caff;
+    color: #ffffff;
     padding: 50px;
     margin-top: auto;
     text-align: center;
+    font-size: 3em;
 }
 
+.small-textarea {
+    width: auto;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 10;
+    padding: 20px 10px 10px 10px;
+    background-color: #63aeff;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
