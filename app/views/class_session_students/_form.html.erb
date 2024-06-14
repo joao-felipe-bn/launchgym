@@ -11,19 +11,25 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :students_id, "Estudante", style: "display: block" %>
-    <% students_array = Student.all.map { |student| [student.name, student.id] } %>
-    <%= form.select :students_id, options_for_select(students_array) %>
+  <div class="form-group row">
+    <div class="col-md-2">
+      <%= form.label :students_id, "Estudante", style: "display: block", class: "col-md-6 col-form-label text-md-right" %>
+      <% students_array = Student.all.map { |student| [student.name, student.id] } %>
+      <%= form.select :students_id, options_for_select(students_array), {}, class: "form-control" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :class_sessions_id, "Turma", style: "display: block" %>
-    <% turma_array = ClassSession.all.map { |turma| [turma.name, turma.id] } %>
-    <%= form.select :class_sessions_id, options_for_select(turma_array) %>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <%= form.label :class_sessions_id, "Turma", style: "display: block" , class: "col-md-6 col-form-label text-md-right"%>
+      <% turma_array = ClassSession.all.map { |turma| [turma.name, turma.id] } %>
+      <%= form.select :class_sessions_id, options_for_select(turma_array), {}, class: "form-control" %>
+    </div>
   </div>
 
+  </br>
+
   <div>
-    <%= form.submit %>
+    <%= form.submit "Salvar", class: "btn btn-primary" %>
   </div>
 <% end %>

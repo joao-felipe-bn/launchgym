@@ -26,7 +26,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       @student.user_id = current_user.id
       if @student.save
-        format.html { redirect_to student_url(@student), notice: "Student was successfully created." }
+        format.html { redirect_to student_url(@student), notice: "Aluno incluido com sucesso!" }
         format.json { render :show, status: :created, location: @student }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class StudentsController < ApplicationController
   def update
     respond_to do |format|
       if @student.update(student_params)
-        format.html { redirect_to student_url(@student), notice: "Student was successfully updated." }
+        format.html { redirect_to student_url(@student), notice: "Aluno atualizado com sucesso!" }
         format.json { render :show, status: :ok, location: @student }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -50,11 +50,17 @@ class StudentsController < ApplicationController
 
   # DELETE /students/1 or /students/1.json
   def destroy
-    @student.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to students_url, notice: "Student was successfully destroyed." }
-      format.json { head :no_content }
+    begin
+      @student.destroy!
+      respond_to do |format|
+        format.html { redirect_to students_url, notice: "Aluno deletado com sucesso!" }
+        format.json { head :no_content }
+      end
+    rescue ActiveRecord::InvalidForeignKey
+      respond_to do |format|
+        format.html { redirect_to students_url, alert: "Aluno não pode ser deletado pois está vínculado a outra tela!" }
+        format.json { head :no_content }
+      end
     end
   end
 

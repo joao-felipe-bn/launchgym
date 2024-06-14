@@ -1,14 +1,31 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Class session students</h1>
+<h1>Aluno por turma</h1>
 
-<div id="class_session_students">
-  <% @class_session_students.each do |class_session_student| %>
-    <%= render class_session_student %>
-    <p>
-      <%= link_to "Show this class session student", class_session_student %>
-    </p>
-  <% end %>
+<%= link_to "Novo", new_class_session_student_path, class: 'btn btn-success'  %>
+
+
+<div id="aluno-turma">
+  
+  <table class="table">
+    <thead>
+        <tr>
+          <th>Aluno</th>
+          <th>Turma</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Excluir</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+      <% @class_session_students.each do |alunoturma| %>
+        <tr>
+          <td><%= alunoturma.student.name %></td>
+          <td><%= alunoturma.class_session.name %></td>
+          <td><%= button_to 'Editar', edit_class_session_student_path(alunoturma), method: 'get', class: 'btn btn-primary' %></td>
+          <td><%= button_to 'Remover',  class_session_student_path(alunoturma), method: 'delete', data: { turbo_confirm: "Deseja mesmo deletar esse registro?" }, class: 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-<%= link_to "New class session student", new_class_session_student_path %>

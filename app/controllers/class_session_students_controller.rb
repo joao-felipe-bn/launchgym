@@ -38,7 +38,7 @@ class ClassSessionStudentsController < ApplicationController
     p "class_session_student2: ",@class_session_student
     respond_to do |format|
       if @class_session_student.save
-        format.html { redirect_to class_session_student_url(@class_session_student), notice: "Class session student was successfully created." }
+        format.html { redirect_to class_session_student_url(@class_session_student), notice: "Aluno incluido na turma" }
         format.json { render :show, status: :created, location: @class_session_student }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -51,7 +51,7 @@ class ClassSessionStudentsController < ApplicationController
   def update
     respond_to do |format|
       if @class_session_student.update(class_session_student_params)
-        format.html { redirect_to class_session_student_url(@class_session_student), notice: "Class session student was successfully updated." }
+        format.html { redirect_to class_session_student_url(@class_session_student), notice: "Aluno atualizado na turma" }
         format.json { render :show, status: :ok, location: @class_session_student }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,7 +65,7 @@ class ClassSessionStudentsController < ApplicationController
     @class_session_student.destroy!
 
     respond_to do |format|
-      format.html { redirect_to class_session_students_url, notice: "Class session student was successfully destroyed." }
+      format.html { redirect_to class_session_students_url, notice: "Aluno removido da turma" }
       format.json { head :no_content }
     end
   end
