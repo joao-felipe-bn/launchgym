@@ -50,3 +50,15 @@ h1 {
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.custom-image-container {
+    width: 100%; /* Defina a largura desejada */
+    height: 100%; /* Defina a altura desejada */
+    overflow: hidden; /* Oculta qualquer conteúdo que extrapole o contêiner */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    align-content: center;
+  }
+  

@@ -27,7 +27,7 @@ class InstructorsController < ApplicationController
     respond_to do |format|
       @instructor.user_id = current_user.id
       if @instructor.save
-        format.html { redirect_to instructor_url(@instructor), notice: "Instructor was successfully created." }
+        format.html { redirect_to instructor_url(@instructor), notice: "Instrutor incluido com sucesso!" }
         format.json { render :show, status: :created, location: @instructor }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class InstructorsController < ApplicationController
   def update
     respond_to do |format|
       if @instructor.update(instructor_params)
-        format.html { redirect_to instructor_url(@instructor), notice: "Instructor was successfully updated." }
+        format.html { redirect_to instructor_url(@instructor), notice: "Instrutor atrualizado com sucesso!" }
         format.json { render :show, status: :ok, location: @instructor }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,11 +51,17 @@ class InstructorsController < ApplicationController
 
   # DELETE /instructors/1 or /instructors/1.json
   def destroy
-    @instructor.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to instructors_url, notice: "Instructor was successfully destroyed." }
-      format.json { head :no_content }
+    begin
+      @instructor.destroy!
+      respond_to do |format|
+        format.html { redirect_to instructors_url, notice: "Instrutor deletado com sucesso!" }
+        format.json { head :no_content }
+      end
+    rescue ActiveRecord::InvalidForeignKey
+      respond_to do |format|
+        format.html { redirect_to instructors_url, alert: "Instrutor não pode ser deletado pois está vinculado a outra tela!" }
+        format.json { head :no_content }
+      end
     end
   end
 

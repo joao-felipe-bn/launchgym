@@ -25,7 +25,7 @@ class TrainingsController < ApplicationController
 
     respond_to do |format|
       if @training.save
-        format.html { redirect_to training_url(@training), notice: "Training was successfully created." }
+        format.html { redirect_to training_url(@training), notice: "Treino incluido com sucesso!" }
         format.json { render :show, status: :created, location: @training }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class TrainingsController < ApplicationController
   def update
     respond_to do |format|
       if @training.update(training_params)
-        format.html { redirect_to training_url(@training), notice: "Training was successfully updated." }
+        format.html { redirect_to training_url(@training), notice: "Treino atualizado com sucesso!" }
         format.json { render :show, status: :ok, location: @training }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -49,12 +49,23 @@ class TrainingsController < ApplicationController
 
   # DELETE /trainings/1 or /trainings/1.json
   def destroy
-    @training.destroy!
+    
 
-    respond_to do |format|
-      format.html { redirect_to trainings_url, notice: "Training was successfully destroyed." }
-      format.json { head :no_content }
+    begin
+      @training.destroy!
+      respond_to do |format|
+        format.html { redirect_to trainings_url, notice: "Treino deletado com sucesso!" }
+        format.json { head :no_content }
+      end
+    rescue
+      respond_to do |format|
+        format.html { redirect_to trainings_url, alert: "Treino não pode ser deletado pois está vínculado a outra tela!" }
+        format.json { head :no_content }
+      end
     end
+    
+
+    
   end
 
   private
