@@ -1,6 +1,74 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Turma</h1>
+
+<div class="accordion" id="accordionExample">
+
+  <div class="accordion-item">
+  
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Filtros
+      </button>
+    </h2>
+  
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+     
+        <div class="card-body">
+          <%= search_form_for @q, remote: true do |f| %>
+            <table>
+
+                <tr>
+
+                  <td>
+                    <div class="filter-field">
+                      <%= f.label :name_cont, 'Nome' , class: "col-md-6 col-form-label text-md-right" %>
+                      <%= f.search_field :name_cont, class: "form-control" %>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="filter-field">
+                      <%= f.label :description_cont, 'Descrição' , class: "col-md-6 col-form-label text-md-right" %>
+                      <%= f.search_field :description_cont, class: "form-control" %>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="filter-field">
+                      <%= f.label :instructor_id, "Instrutor", style: "display: block" %>
+                      <% instructor_array = Instructor.all.map { |instructor| [instructor.name, instructor.id] } %>
+                      <%= f.select :instructor_id_eq, options_for_select(instructor_array), { include_blank: 'Selecione o Instrutor' }, class: "form-control" %>
+                    </div>
+                  </td>
+                 
+                  <td>
+                    <div class="filter-field">
+                      <%= f.label :training_id, "Treino", style: "display: block" %>
+                      <% training_array = Training.all.map { |training| [training.name, training.id] } %>
+                      <%= f.select :training_id_eq, options_for_select(training_array), { include_blank: 'Selecione o Treino' }, class: "form-control" %>
+                    </div>
+                  </td>
+       
+                </tr>
+
+              <tr>
+                <td colspan="2">
+                  <%= f.submit 'Filtrar' , class: 'btn btn-primary' %>
+                    <%= link_to 'Limpar Filtros' , class_sessions_path, method: :get, class: 'btn btn-secondary' ,
+                      style: 'margin-left: 10px;' %>
+                </td>
+              </tr>
+        
+            </table>
+            <% end %>
+        </div>
+
+      </div>
+    </div>
+  
+  </div>
+
+</div>
 
 <%= link_to "Novo", new_class_session_path, class: 'btn btn-success' %>
 

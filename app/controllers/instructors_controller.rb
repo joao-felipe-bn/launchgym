@@ -1,9 +1,11 @@
 class InstructorsController < ApplicationController
+  include Pagy::Backend
   before_action :set_instructor, only: %i[ show edit update destroy ]
 
   # GET /instructors or /instructors.json
   def index
-    @instructors = Instructor.all
+    @q = Instructor.ransack(params[:q])
+    @pagy, @instructors = pagy(@q.result, items: 10)
   end
 
   # GET /instructors/1 or /instructors/1.json
@@ -63,6 +65,12 @@ class InstructorsController < ApplicationController
         format.json { head :no_content }
       end
     end
+  end
+
+  def clear_filters
+    # Você pode redefinir os parâmetros de pesquisa para seus valores padrão aqui
+    p "caiu no clear_filters"
+    redirect_to instructor_path
   end
 
   private

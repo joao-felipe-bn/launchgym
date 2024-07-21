@@ -1,15 +1,25 @@
 class ClassSessionStudentsController < ApplicationController
+  
+  include Pagy::Backend
+
   before_action :set_class_session_student, only: %i[ show edit update destroy ]
 
   # GET /class_session_students or /class_session_students.json
   def index
-    p "Veio o params?",params.to_s
-    p "Veio o class_sessions_id?",params[:class_sessions_id].present?
+    p "Veio o params?", params.to_s
+    p "Veio o class_sessions_id?", params[:class_sessions_id].present?
 
     if params[:class_sessions_id].present?
-      @class_session_students = ClassSessionStudent.where(class_sessions_id: params[:class_sessions_id])
+      #@class_session_students = ClassSessionStudent.where(class_sessions_id: params[:class_sessions_id])
+
+      @q = ClassSessionStudent.where(class_sessions_id: params[:class_sessions_id])
+      @q = ClassSessionStudent.ransack(params[:q])
+      @pagy, @class_session_students = pagy(@q.result, items: 10)
+
     else 
-      @class_session_students = ClassSessionStudent.all
+      #@class_session_students = ClassSessionStudent.all
+      @q = ClassSessionStudent.ransack(params[:q])
+      @pagy, @class_session_students = pagy(@q.result, items: 10)
     end
   end
 
@@ -68,6 +78,12 @@ class ClassSessionStudentsController < ApplicationController
       format.html { redirect_to class_session_students_url, notice: "Aluno removido da turma" }
       format.json { head :no_content }
     end
+  end
+
+  def clear_filters
+    # Você pode redefinir os parâmetros de pesquisa para seus valores padrão aqui
+    p "caiu no clear_filters"
+    redirect_to class_session_students_path
   end
 
   private

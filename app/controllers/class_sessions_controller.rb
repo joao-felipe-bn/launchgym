@@ -1,10 +1,13 @@
 class ClassSessionsController < ApplicationController
+  
+  include Pagy::Backend
+
   before_action :set_class_session, only: %i[ show edit update destroy ]
 
   # GET /class_sessions or /class_sessions.json
   def index
-    @class_sessions = ClassSession.all
-   # @instructors = Instructors.all
+   @q = ClassSession.ransack(params[:q])
+   @pagy, @class_sessions = pagy(@q.result, items: 10)
   end
 
   # GET /class_sessions/1 or /class_sessions/1.json
@@ -63,6 +66,12 @@ class ClassSessionsController < ApplicationController
       format.json { head :no_content }
       end
     end  
+  end
+
+  def clear_filters
+    # Você pode redefinir os parâmetros de pesquisa para seus valores padrão aqui
+    p "caiu no clear_filters"
+    redirect_to class_sessions_path
   end
 
   private

@@ -1,6 +1,60 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Aluno por turma</h1>
+
+<div class="accordion" id="accordionExample">
+
+  <div class="accordion-item">
+  
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Filtros
+      </button>
+    </h2>
+  
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+     
+        <div class="card-body">
+          <%= search_form_for @q, remote: true do |f| %>
+            <table>
+
+              <tr>
+
+                <td>
+                  <div class="filter-field">
+                    <%= f.label :student_id, "Aluno", style: "display: block" %>
+                    <% student_array = Student.all.map { |student| [student.name, student.id] } %>
+                    <%= f.select :students_id_eq, options_for_select(student_array), { include_blank: 'Selecione o Aluno' }, class: "form-control" %>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="filter-field">
+                    <%= f.label :class_session_id, "Turma", style: "display: block" %>
+                    <% class_session_array = ClassSession.all.map { |class_session| [class_session.name, class_session.id] } %>
+                    <%= f.select :class_session_id_eq, options_for_select(class_session_array), { include_blank: 'Selecione a Turma' }, class: "form-control" %>
+                  </div>
+                </td>
+
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <%= f.submit 'Filtrar' , class: 'btn btn-primary' %>
+                    <%= link_to 'Limpar Filtros' , class_session_students_path, method: :get, class: 'btn btn-secondary' ,
+                      style: 'margin-left: 10px;' %>
+                </td>
+              </tr>
+        
+            </table>
+            <% end %>
+        </div>
+
+      </div>
+    </div>
+  
+  </div>
+
+</div>
 
 <%= link_to "Novo", new_class_session_student_path, class: 'btn btn-success'  %>
 

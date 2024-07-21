@@ -1,9 +1,12 @@
 class StudentsController < ApplicationController
+  include Pagy::Backend
   before_action :set_student, only: %i[ show edit update destroy ]
 
   # GET /students or /students.json
   def index
-    @students = Student.all
+    #@students = Student.all
+    @q = Student.ransack(params[:q])
+    @pagy, @students = pagy(@q.result, items: 10)
   end
 
   # GET /students/1 or /students/1.json
@@ -62,6 +65,12 @@ class StudentsController < ApplicationController
         format.json { head :no_content }
       end
     end
+  end
+
+  def clear_filters
+    # Você pode redefinir os parâmetros de pesquisa para seus valores padrão aqui
+    p "caiu no clear_filters"
+    redirect_to student_path
   end
 
   private
