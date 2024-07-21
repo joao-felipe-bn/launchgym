@@ -1,6 +1,67 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Instrutores</h1>
+
+<div class="accordion" id="accordionExample">
+
+  <div class="accordion-item">
+  
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Filtros
+      </button>
+    </h2>
+  
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+     
+        <div class="card-body">
+          <%= search_form_for @q, remote: true do |f| %>
+            <table>
+
+                <tr>
+
+                  <td>
+                    <div class="filter-field">
+                      <%= f.label :name_cont, 'Nome' , class: "col-md-6 col-form-label text-md-right" %>
+                      <%= f.search_field :name_cont, class: "form-control" %>
+                    </div>
+                  </td>
+
+                  <td>  
+                    <div class="filter-field">
+                      <%= f.label :document_cont, 'Documento'  , class: "col-md-6 col-form-label text-md-right" %>
+                      <%= f.search_field :document_cont , class: "form-control" %>
+                    </div>
+                  </td>
+                  
+                  <td>
+                    <div class="filter-field">
+                      <%= f.label :email_cont, 'Email'  , class: "col-md-6 col-form-label text-md-right" %>
+                      <%= f.search_field :email_cont , class: "form-control" %>
+                    </div>
+                  </td>
+             
+                </tr>
+
+              <tr>
+                <td colspan="2">
+                  <%= f.submit 'Filtrar' , class: 'btn btn-primary' %>
+                    <%= link_to 'Limpar Filtros' , instructors_path, method: :get, class: 'btn btn-secondary' ,
+                      style: 'margin-left: 10px;' %>
+                </td>
+              </tr>
+        
+            </table>
+            <% end %>
+        </div>
+
+      </div>
+    </div>
+  
+  </div>
+
+</div>
+
+</br>
 
 <%= link_to "Novo", new_instructor_path, class: 'btn btn-success' %>
 
@@ -30,4 +91,5 @@
     </tbody>
   
   </table>
+  <%== pagy_bootstrap_nav(@pagy) %>
 </div>

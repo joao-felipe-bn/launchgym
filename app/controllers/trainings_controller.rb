@@ -1,9 +1,14 @@
 class TrainingsController < ApplicationController
+
+  include Pagy::Backend
+
   before_action :set_training, only: %i[ show edit update destroy ]
 
   # GET /trainings or /trainings.json
   def index
-    @trainings = Training.all
+    #@trainings = Training.all
+    @q = Training.ransack(params[:q])
+    @pagy, @trainings = pagy(@q.result, items: 10)
   end
 
   # GET /trainings/1 or /trainings/1.json
@@ -62,10 +67,13 @@ class TrainingsController < ApplicationController
         format.html { redirect_to trainings_url, alert: "Treino não pode ser deletado pois está vínculado a outra tela!" }
         format.json { head :no_content }
       end
-    end
-    
+    end    
+  end
 
-    
+  def clear_filters
+    # Você pode redefinir os parâmetros de pesquisa para seus valores padrão aqui
+    p "caiu no clear_filters"
+    redirect_to training_path
   end
 
   private
