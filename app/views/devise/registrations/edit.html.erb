@@ -1,4 +1,4 @@
-<h2>Editar Usuário </h2>
+<h1>Editar Usuário </h1>
 
 <div class="card-body">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "form-card" , html: { method:
@@ -30,14 +30,10 @@
               <div class="col-md-4">
                 <%= f.password_field :password, autocomplete: "new-password" , class: "form-control" %>
 
-                  <%= f.label :password_confirmation, "Confirme sua Senha" ,
+                  <%= f.label :password_confirmation, "Confirme sua Senha (#{@minimum_password_length} mínimo de caracteres)" ,
                     class: "col-md-6 col-form-label text-md-right" %><br />
+                    
                     <%= f.password_field :password_confirmation, autocomplete: "new-password" , class: "form-control" %>
-                      <% if @minimum_password_length %>
-                        <em>
-                          <%= @minimum_password_length %> mínimo de caracteres
-                        </em>
-                        <% end %>
               </div>
           </div>
 
