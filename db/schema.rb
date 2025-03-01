@@ -15,12 +15,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_050356) do
   enable_extension "plpgsql"
 
   create_table "class_session_students", force: :cascade do |t|
-    t.bigint "students_id", null: false
-    t.bigint "class_sessions_id", null: false
+    t.bigint "student_id", null: false
+    t.bigint "class_session_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["class_sessions_id"], name: "index_class_session_students_on_class_sessions_id"
-    t.index ["students_id"], name: "index_class_session_students_on_students_id"
+    t.index ["class_session_id"], name: "index_class_session_students_on_class_session_id"
+    t.index ["student_id"], name: "index_class_session_students_on_student_id"
   end
 
   create_table "class_sessions", force: :cascade do |t|
@@ -84,8 +84,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_050356) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "class_session_students", "class_sessions", column: "class_sessions_id"
-  add_foreign_key "class_session_students", "students", column: "students_id"
+  add_foreign_key "class_session_students", "class_sessions"
+  add_foreign_key "class_session_students", "students"
   add_foreign_key "class_sessions", "instructors"
   add_foreign_key "class_sessions", "trainings"
   add_foreign_key "instructors", "users"

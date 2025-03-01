@@ -1,6 +1,6 @@
 <h1>Editar turma</h1>
 
-<%= link_to "Ver alunos da turma", class_session_students_path(class_sessions_id: @class_session.id), class: 'btn btn-primary' %>
+<%= link_to "Ver alunos da turma", class_session_students_path(class_session_id: @class_session.id), class: 'btn btn-primary' %>
 
 <%= render "form", class_session: @class_session %>
 

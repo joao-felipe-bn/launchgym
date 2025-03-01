@@ -17,7 +17,7 @@ class ClassSessionStudentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create class_session_student" do
     assert_difference("ClassSessionStudent.count") do
-      post class_session_students_url, params: { class_session_student: { class_sessions_id: @class_session_student.class_sessions_id, students_id: @class_session_student.students_id } }
+      post class_session_students_url, params: { class_session_student: { class_session_id: @class_session_student.class_session_id, student_id: @class_session_student.student_id } }
     end
 
     assert_redirected_to class_session_student_url(ClassSessionStudent.last)
@@ -34,7 +34,7 @@ class ClassSessionStudentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update class_session_student" do
-    patch class_session_student_url(@class_session_student), params: { class_session_student: { class_sessions_id: @class_session_student.class_sessions_id, students_id: @class_session_student.students_id } }
+    patch class_session_student_url(@class_session_student), params: { class_session_student: { class_session_id: @class_session_student.class_session_id, student_id: @class_session_student.student_id } }
     assert_redirected_to class_session_student_url(@class_session_student)
   end
 

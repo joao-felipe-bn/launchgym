@@ -7,12 +7,12 @@ class ClassSessionStudentsController < ApplicationController
   # GET /class_session_students or /class_session_students.json
   def index
     p "Veio o params?", params.to_s
-    p "Veio o class_sessions_id?", params[:class_sessions_id].present?
+    p "Veio o class_session_id?", params[:class_session_id].present?
 
-    if params[:class_sessions_id].present?
-      #@class_session_students = ClassSessionStudent.where(class_sessions_id: params[:class_sessions_id])
+    if params[:class_session_id].present?
+      #@class_session_students = ClassSessionStudent.where(class_session_id: params[:class_session_id])
 
-      @q = ClassSessionStudent.where(class_sessions_id: params[:class_sessions_id])
+      @q = ClassSessionStudent.where(class_session_id: params[:class_session_id])
       @q = ClassSessionStudent.ransack(params[:q])
       @pagy, @class_session_students = pagy(@q.result, items: 10)
 
@@ -40,8 +40,8 @@ class ClassSessionStudentsController < ApplicationController
   def create
     p "params: ",class_session_student_params.to_s
 
-    @student = Student.find_by(id: class_session_student_params[:students_id])
-    @classSession = ClassSession.find_by(id: class_session_student_params[:class_sessions_id])
+    @student = Student.find_by(id: class_session_student_params[:student_id])
+    @classSession = ClassSession.find_by(id: class_session_student_params[:class_session_id])
 
     @class_session_student = ClassSessionStudent.new(class_session_student_params)
    
@@ -94,6 +94,6 @@ class ClassSessionStudentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def class_session_student_params
-      params.require(:class_session_student).permit(:students_id, :class_sessions_id)
+      params.require(:class_session_student).permit(:student_id, :class_session_id)
     end
 end
