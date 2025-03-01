@@ -23,7 +23,7 @@
                   <div class="filter-field">
                     <%= f.label :student_id, "Aluno", style: "display: block" %>
                     <% student_array = Student.all.map { |student| [student.name, student.id] } %>
-                    <%= f.select :students_id_eq, options_for_select(student_array), { include_blank: 'Selecione o Aluno' }, class: "form-control" %>
+                    <%= f.select :student_id_eq, options_for_select(student_array), { include_blank: 'Selecione o Aluno' }, class: "form-control" %>
                   </div>
                 </td>
 

@@ -14,8 +14,8 @@ class ClassSessionStudentsTest < ApplicationSystemTestCase
     visit class_session_students_url
     click_on "New class session student"
 
-    fill_in "Class sessions", with: @class_session_student.class_sessions_id
-    fill_in "Students", with: @class_session_student.students_id
+    fill_in "Class sessions", with: @class_session_student.class_session_id
+    fill_in "Students", with: @class_session_student.student_id
     click_on "Create Class session student"
 
     assert_text "Class session student was successfully created"
@@ -26,8 +26,8 @@ class ClassSessionStudentsTest < ApplicationSystemTestCase
     visit class_session_student_url(@class_session_student)
     click_on "Edit this class session student", match: :first
 
-    fill_in "Class sessions", with: @class_session_student.class_sessions_id
-    fill_in "Students", with: @class_session_student.students_id
+    fill_in "Class sessions", with: @class_session_student.class_session_id
+    fill_in "Students", with: @class_session_student.student_id
     click_on "Update Class session student"
 
     assert_text "Class session student was successfully updated"
