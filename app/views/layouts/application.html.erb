@@ -10,7 +10,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="<%= user_signed_in? ? '' : 'teste' %>">
+
 
     <%= render 'layouts/navbar' %>
 
@@ -27,14 +28,16 @@
       </div>
     <% end %>
 
-    </br>
+    <br>
 
-    <div class="container-fluid">
+    <div class="container-fluid ">
       <% if false %> 
         <p> Usuário logado: <%=  user_signed_in? %>  </p> 
       <% end %> 
       <%= yield %>
     </div>
+    
     <%= render 'layouts/footer' %>
+
   </body>
 </html>

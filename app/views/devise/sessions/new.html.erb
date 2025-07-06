@@ -22,18 +22,17 @@
                                     <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
                                 </div>
                             </div>
-                            
-                            </br>
 
+                            </br>
+                            
                             <% if devise_mapping.rememberable? %>
                                 <div class="col-md-6 offset-md-2">
                                     <%= f.check_box :remember_me, class: "checkbox" %>
                                     <%= f.label :remember_me, "Lembrar" %>
                                 </div>
-                          <% end %>
+                            <% end %>
 
-                            </br>
-                            
+
                             <div class="col-md-6 offset-md-2">
                                 <%= f.submit "Entrar", class: "btn btn-primary" %>
                                 
