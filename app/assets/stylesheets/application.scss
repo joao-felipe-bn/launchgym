@@ -30,7 +30,7 @@ body {
 footer {
     background-color: #98caff;
     color: #ffffff;
-    padding: 50px;
+    padding: 20px;
     margin-top: auto;
     text-align: center;
     font-size: 3em;
@@ -60,9 +60,20 @@ h1 {
     align-items: center;
     background-color: white;
     align-content: center;
-  }
+}
 
 .filter-field {
     margin-right: 20px;
 }
 
+.teste {
+    background-image: image-url("fundo.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 30%;
+}
+
+
+.login-form {
+    margin-top: 10px;
+  }
